@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import { Buffer } from "buffer";
 import save from "../../images/save.svg";
 import call from "../../images/call.svg";
 
@@ -31,6 +32,12 @@ gap: 13px;
 position: absolute;
 left: 16px;
 bottom: 28px;
+`
+
+const StyledLink = styled.a`
+text-decoration: none;
+width: 165px;
+height: 60px;
 `
 
 const StyledButtonMobi = styled.button`
@@ -68,24 +75,52 @@ const Button = (props) => {
   const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
+  const [downloadURL, setDownloadURL] = React.useState('');
+
+  React.useEffect(() => {
+    const generateVCF = async () => {
+      const vCardString = `
+      BEGIN:VCARD
+      VERSION:3.0
+      FN:${props.surname} ${props.name}
+      TEL:${props.phone}
+      END:VCARD
+      `;
+
+      const base64EncodedString = Buffer.from(vCardString, 'utf8').toString('base64');
+      const vcfFileContent = `data:text/vcard;charset=utf-8;base64,${base64EncodedString}`;
+      const blob = new Blob([vcfFileContent], { type: 'text/vcard;charset=utf-8' });
+
+      const url = URL.createObjectURL(blob);
+      setDownloadURL(url);
+    };
+
+    generateVCF();
+  }, []);
+
   return (
     <div>
       {isDesktop && (
-        <StyledButton {...props}>
-          ДОБАВИТЬ В КОНТАКТЫ
-        </StyledButton>
+        <StyledLink href={downloadURL} download="contact.vcf">
+          <StyledButton {...props}>
+            ДОБАВИТЬ В КОНТАКТЫ
+          </StyledButton>
+        </StyledLink>
       )}
       {isMobile && (
         <StyledFlex>
-          <StyledButtonMobi>
-            <StyledButtonMobiIcon alt="сохранить" src={save}></StyledButtonMobiIcon>
-            <StyledButtonMobiText>СОХРАНИТЬ ВИЗИТКУ</StyledButtonMobiText>
-          </StyledButtonMobi>
-          <StyledButtonMobi>
-            <StyledButtonMobiIcon alt="позвонить" src={call}></StyledButtonMobiIcon>
-            <StyledButtonMobiText>ПОЗВОНИТЬ</StyledButtonMobiText>
-          </StyledButtonMobi>
-
+          <StyledLink href={downloadURL} download="contact.vcf">
+            <StyledButtonMobi>
+              <StyledButtonMobiIcon alt="сохранить" src={save}></StyledButtonMobiIcon>
+              <StyledButtonMobiText>СОХРАНИТЬ ВИЗИТКУ</StyledButtonMobiText>
+            </StyledButtonMobi>
+          </StyledLink>
+          <StyledLink href={`tel:${props.phone}`}>
+            <StyledButtonMobi>
+              <StyledButtonMobiIcon alt="позвонить" src={call}></StyledButtonMobiIcon>
+              <StyledButtonMobiText>ПОЗВОНИТЬ</StyledButtonMobiText>
+            </StyledButtonMobi>
+          </StyledLink>
         </StyledFlex>
 
       )}

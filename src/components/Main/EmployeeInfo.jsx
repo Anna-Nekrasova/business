@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Contact from "./Contact";
-import { Link } from 'react-router-dom';
 import phoneIcon from "../../images/mi_mobile.svg";
 import callIcon from "../../images/mi_call.svg";
 import emailIcon from "../../images/mi_email.svg";
@@ -74,7 +73,7 @@ const EmployeeInfo = (props) => {
             <Contact icon={phoneIcon} value={props.info.phone} link={`tel:${props.info.phone}`}></Contact>
             <Contact icon={phoneIcon} value={props.info.phone2} link={`tel:${props.info.phone2}`}></Contact>
             <Contact icon={callIcon} value={props.info.phone3} link={`tel:${props.info.phone3}`}></Contact>
-            <Contact icon={emailIcon} value={'Почта'} link={`https://mail.yandex.ru/compose?mailto=${props.info.email}`}></Contact>
+            <Contact icon={emailIcon} value={'Почта'} link={`mailto:${props.info.email}`}></Contact>
             <Contact icon={siteIcon} value={'Личный сайт'} link={props.info.site}></Contact>
             <Contact icon={adressIcon} value={props.info.address} cursor={"default"} opacity={1}></Contact>
             <Contact icon={birthdayIcon} value={props.info.birthday} cursor={"default"} opacity={1}></Contact>

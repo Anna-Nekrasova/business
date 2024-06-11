@@ -20,7 +20,7 @@ const EmployeePhotoAndButton = (props) => {
   return (
     <StyledEmployeePhotoAndButton {...props}>
       <Photo avatar={props.photo}></Photo>
-      <Button></Button>
+      <Button phone={props.phone}  name={props.name} surname={props.surname}></Button>
     </StyledEmployeePhotoAndButton>
   );
 }

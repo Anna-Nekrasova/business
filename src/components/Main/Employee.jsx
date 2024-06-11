@@ -29,7 +29,7 @@ const Employee = (props) => {
     <div>
       <StyledEmployee {...props}>
         <Logo src={employee.logo} $borderBottom="1px solid #060606"></Logo>
-        <EmployeePhotoAndButton photo={employee.photo}></EmployeePhotoAndButton>
+        <EmployeePhotoAndButton photo={employee.photo} phone={employee.phone} name={employee.name} surname={employee.surname}></EmployeePhotoAndButton>
         <EmployeeInfo info={employee}></EmployeeInfo>
       </StyledEmployee>
       <Footer></Footer>

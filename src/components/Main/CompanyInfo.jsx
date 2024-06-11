@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Contact from "./Contact";
-import { Link } from 'react-router-dom';
 import phoneIcon from "../../images/mi_mobile.svg";
 import emailIcon from "../../images/mi_email.svg";
 import siteIcon from "../../images/mi_link-alt.svg";
@@ -38,7 +37,7 @@ const CompanyInfo = (props) => {
     <StyledCompanyInfo {...props}>
         <StyledList>
             <Contact icon={phoneIcon} value={props.info.phone} link={`tel:${props.info.phone}`} indent={"20px"}></Contact>
-            <Contact icon={emailIcon} value={'Почта'} link={`https://mail.yandex.ru/compose?mailto=${props.info.email}`} indent={"20px"}></Contact>
+            <Contact icon={emailIcon} value={'Почта'} link={`mailto:${props.info.email}`} indent={"20px"}></Contact>
             <Contact icon={siteIcon} value={'Личный сайт'} link={props.info.site} indent={"20px"}></Contact>
             <Contact icon={adressIcon} value={props.info.address} cursor={"default"} opacity={1} indent={"20px"}></Contact>
             <Contact icon={birthdayIcon} value={props.info.birthday} cursor={"default"} opacity={1} indent={"20px"}></Contact>
