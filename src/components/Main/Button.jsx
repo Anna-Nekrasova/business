@@ -83,16 +83,13 @@ const Button = (props) => {
       BEGIN:VCARD
       VERSION:3.0
       FN:${props.surname} ${props.name}
-      TEL:${props.phone}
+      TEL;type=WORK;type=VOICE:${props.phone}
       END:VCARD
       `;
 
       const base64EncodedString = Buffer.from(vCardString, 'utf8').toString('base64');
       const vcfFileContent = `data:text/vcard;charset=utf-8;base64,${base64EncodedString}`;
-      const blob = new Blob([vcfFileContent], { type: 'text/vcard;charset=utf-8' });
-
-      const url = URL.createObjectURL(blob);
-      setDownloadURL(url);
+      setDownloadURL(vcfFileContent);
     };
 
     generateVCF();
