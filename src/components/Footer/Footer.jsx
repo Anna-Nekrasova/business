@@ -37,6 +37,7 @@ justify-content: space-between;
   flex-wrap: wrap;
   justify-content: start;
   gap: 31px;
+  max-width: 718px;
 }
 
 `

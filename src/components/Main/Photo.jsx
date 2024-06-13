@@ -1,7 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-import Logo_mobi from "../../images/Logo_mobi.svg";
+import Flickity from "react-flickity-component";
+import '../../../src/flickity.css';
+import man_mobi from "../../images/man_mobi.png";
+
+const flickityOptions = {
+  initialIndex: 2,
+  wrapAround: true,
+  prevNextButtons: false
+}
+
+const StyledFlickity = styled(Flickity)`
+`
 
 const StyledPhoto = styled.img`
 object-fit: cover;
@@ -20,17 +31,25 @@ border-radius: 8.11px;
   width: 100%;
 }
 `
-
 const Photo = (props) => {
   //Временное решение для максимального соответствия макету
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const photoArray = Object.values(props.photo);
 
   return (
-    <StyledPhoto {...props} src={isMobile ? Logo_mobi : props.avatar}>
-
-    </StyledPhoto>
+    <StyledFlickity
+      className="Slider"
+      elementType='div'
+      disableImagesLoaded={false}
+      options={flickityOptions}
+      reloadOnUpdate
+      static
+    >
+      {photoArray.map((photo, index) => (
+        <StyledPhoto key={index} {...props} src={isMobile ? man_mobi : photo} />
+      ))}
+    </StyledFlickity>
   );
 }
-
 
 export default Photo;

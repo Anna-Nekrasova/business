@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "./Logo";
 import employee from "../../data/employee";
+import photos from "../../data/photos";
 import EmployeePhotoAndButton from "./EmployeePhotoAndButton";
 import EmployeeInfo from "./EmployeeInfo";
 import Footer from "../Footer/Footer";
@@ -29,7 +30,7 @@ const Employee = (props) => {
     <div>
       <StyledEmployee {...props}>
         <Logo src={employee.logo} $borderBottom="1px solid #060606"></Logo>
-        <EmployeePhotoAndButton photo={employee.photo} phone={employee.phone} name={employee.name} surname={employee.surname}></EmployeePhotoAndButton>
+        <EmployeePhotoAndButton photo={photos} phone={employee.phone} name={employee.name} surname={employee.surname}></EmployeePhotoAndButton>
         <EmployeeInfo info={employee}></EmployeeInfo>
       </StyledEmployee>
       <Footer></Footer>

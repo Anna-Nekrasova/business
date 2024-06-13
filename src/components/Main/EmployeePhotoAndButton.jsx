@@ -12,6 +12,7 @@ position: relative;
 
 @media (max-width: 767px) {
   margin: 0 auto 0;
+  width: 375px;
   max-width: 375px;
 }
 `
@@ -19,7 +20,7 @@ position: relative;
 const EmployeePhotoAndButton = (props) => {
   return (
     <StyledEmployeePhotoAndButton {...props}>
-      <Photo avatar={props.photo}></Photo>
+      <Photo photo={props.photo}></Photo>
       <Button phone={props.phone}  name={props.name} surname={props.surname}></Button>
     </StyledEmployeePhotoAndButton>
   );

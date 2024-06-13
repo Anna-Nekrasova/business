@@ -1,9 +1,7 @@
-import logo from "../images/Logo.png";
-import photo from "../images/Photo.png"
+import logo from "../images/Logo.png"
 
 const employee = {
     logo: logo,
-    photo: photo,
     surname: "Иванов",
     name: "Иван Петрович",
     position: "Директор",
