@@ -12,6 +12,14 @@ const flickityOptions = {
 }
 
 const StyledFlickity = styled(Flickity)`
+border-radius: 8.11px;
+overflow: hidden;
+max-height: 495px;
+
+@media (max-width: 767px) {
+  border-radius: 0;
+  max-height: 369px;
+}
 `
 
 const StyledPhoto = styled.img`
@@ -20,7 +28,6 @@ height: 495px;
 width: 279px;
 overflow: hidden;
 object-position: center;
-border-radius: 8.11px;
 
 @media (max-width: 767px) {
   margin: 0 auto 0;
